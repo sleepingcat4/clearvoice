@@ -1,8 +1,3 @@
-from network_wrapper import network_wrapper
-import os
-import warnings
-warnings.filterwarnings("ignore")
-
 class ClearVoice:
     """ The main class interface to the end users for performing speech processing.
         This class provides the desired model to perform the given task.
@@ -31,8 +26,8 @@ class ClearVoice:
         self.config_path = config_path  # Store the custom config path
         
         for model_name in model_names:
-            model = self.network_wrapper(task, model_name, config_path=self.config_path)
-            self.models += [model]  
+            model = self.network_wrapper(task, model_name, config_path=self.config_path)  # Pass config_path
+            self.models.append(model)  
     
     def __call__(self, input_path, online_write=False, output_path=None):
         results = {}
